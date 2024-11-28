@@ -12,6 +12,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\TamanoController;
+use App\Http\Controllers\CategoriaController;
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -62,5 +65,10 @@ Route::post('/carrito/store', [CarritoController::class, 'store'])->name('carrit
 
 Route::post('/actualizarEstadoPedido', [CarritoController::class, 'actualizarEstadoPedido']);
 Route::get('/search', [SearchController::class, 'search'])->name('search');
+
+Route::resource('tamanos', TamanoController::class);
+Route::resource('categorias', CategoriaController::class);
+
+
 
 require __DIR__.'/auth.php';

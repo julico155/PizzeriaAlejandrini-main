@@ -30,7 +30,8 @@ class PizzaController extends Controller
 
         return Inertia::render('Pizzas/Index', [
             'pizzas' => $pizzas,
-            'visitas' => $visitas
+            'visitas' => $visitas,
+            'is_admin' => auth()->user()->is_admin,
         ]);
 
     }

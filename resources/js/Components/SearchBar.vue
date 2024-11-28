@@ -17,7 +17,7 @@ const performSearch = () => {
             v-model="searchQuery"
             type="text"
             placeholder="Buscar..."
-            class="border px-4 py-2 rounded-lg"
+            class="border px-4 py-2 rounded-lg w-32" 
         />
         <button
             @click="performSearch"

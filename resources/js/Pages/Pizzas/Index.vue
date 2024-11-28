@@ -2,9 +2,11 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import VisitasFooter from '@/Components/VisitasFooter.vue';
 import PizzaSearch from './Components/PizzaSearch.vue';
+import Pizzas from './Components/Pizzas.vue';
 import { ref, onMounted } from 'vue';
 import { Head } from '@inertiajs/vue3';
-import Pizzas from './Components/Pizzas.vue';
+
+const currentTheme = ref(localStorage.getItem('theme') || 'light');
 
 const props = defineProps({
     pizzas: {
@@ -14,13 +16,18 @@ const props = defineProps({
     visitas: {
         type: Object,
         required: true
-    }
+    },
+    isAdmin: {
+        type: Boolean,
+        required: true, // Recibimos `isAdmin` desde el componente principal
+    },
 });
 
 const pizzaList = ref([]);
 
 onMounted(() => {
     pizzaList.value = props.pizzas;
+    document.documentElement.className = `theme-${currentTheme.value}`;
 });
 
 const searchPizzas = (search) => {
@@ -30,36 +37,34 @@ const searchPizzas = (search) => {
         pizza.tamano.toLowerCase().includes(search.toLowerCase()) ||
         pizza.categoria.toLowerCase().includes(search.toLowerCase())
     );
-    // pizzaList.value = props.pizzas.filter(pizza => pizza.tamano.toLowerCase().includes(search.toLowerCase()));
-
-}
+};
 
 </script>
 
-
 <template>
-
     <Head title="Pizzas" />
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="text-xl font-semibold leading-tight text-gray-800">
+            <h2 class="text-xl font-semibold leading-tight text-primary bg-primary px-4 py-2 rounded">
                 Pizzas
             </h2>
         </template>
 
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900">
+                <div class="overflow-hidden bg-card-background shadow-sm sm:rounded-lg">
+                    <div class="p-6 lg:p-8 bg-background border-b border-gray-200">
+                        <h3 class="font-semibold text-lg text-primary bg-primary px-4 py-2 rounded">
+                            Menú de pizzas
+                        </h3>
                         <PizzaSearch @searchPizzas="searchPizzas" />
-                        <Pizzas :pizzas="pizzaList" />
+                        <Pizzas :pizzas="pizzas" :isAdmin="$page.props.auth.user.is_admin" />
                     </div>
                 </div>
             </div>
         </div>
 
         <VisitasFooter :visitas="visitas.cant" />
-
     </AuthenticatedLayout>
 </template>
