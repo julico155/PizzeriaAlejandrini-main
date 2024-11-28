@@ -1,0 +1,1 @@
+import{_ as o}from"./_plugin-vue_export-helper-DlAUqK2U.js";import{o as e,f as t}from"./app-BbmtW1sE.js";const c={},r={src:"https://res.cloudinary.com/dt0pbqivj/image/upload/v1702448401/Pizzeria/bb4m8kteo2gyjdnyn46o.png",alt:"icono pizzeria"};function n(i,a){return e(),t("img",r)}const _=o(c,[["render",n]]);export{_ as A};

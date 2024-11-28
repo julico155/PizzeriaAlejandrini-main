@@ -1,0 +1,1 @@
+import{o as e,f as s,b as a,t as o}from"./app-BbmtW1sE.js";const r={class:"flex justify-end m-2 p-3"},i={class:"text-sm text-gray-600"},p={__name:"VisitasFooter",props:{visitas:{type:Number,required:!0}},setup(t){return(c,n)=>(e(),s("footer",r,[a("p",i,"Cantidad de visitas: "+o(t.visitas),1)]))}};export{p as _};
